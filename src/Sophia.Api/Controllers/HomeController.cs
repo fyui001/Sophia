@@ -2,7 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Sophia.Models;
 
-namespace Sophia.Controllers;
+namespace Sophia.Api.Controllers;
 
 public class HomeController : Controller
 {
