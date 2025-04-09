@@ -1,7 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
+using Sophia.Api.DbContext;
 
+
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContextPool<SophiaContext>(options =>
+	 options.UseMySql(
+	 	builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+	).UseSnakeCaseNamingConvention()
+);
+
 
 var app = builder.Build();
 

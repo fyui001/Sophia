@@ -1,8 +1,8 @@
+namespace Sophia.Api.Controllers;
+
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Sophia.Models;
-
-namespace Sophia.Controllers;
+using Models;
 
 public class HomeController : Controller
 {
