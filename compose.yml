@@ -14,6 +14,7 @@
       - /code/src/Sophia.Api/bin
       - /code/src/Sophia.Api/obj
     networks:
+      - default
       - docker_default
     command:
       [
@@ -26,6 +27,27 @@
         "--urls",
         "http://0.0.0.0:80",
       ]
+  db:
+    image: mysql:9.1.0
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./docker/db/init.sql:/docker-entrypoint-initdb.d/0.sql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - TZ=${TZ}
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+    labels:
+      - "traefik.enable=false"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+
+volumes:
+  db-store:
 
 networks:
   docker_default:

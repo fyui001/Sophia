@@ -3,7 +3,9 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS base
 WORKDIR /code
 
 
-#RUN dotnet tool install --global -dotnet-ef
+RUN dotnet tool install --global dotnet-ef
+ENV PATH="$PATH:/root/.dotnet/tools"
+
 FROM base AS build
 
 # copy csproj and restore as distinct layers

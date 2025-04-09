@@ -1,4 +1,4 @@
-namespace Sophia.Models;
+namespace Sophia.Api.Models;
 
 public class ErrorViewModel
 {
