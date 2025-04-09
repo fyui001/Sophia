@@ -1,0 +1,33 @@
+﻿services:
+  sophia:
+    build:
+      context: .
+      target: base
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sophia.rule=Host(`sophia.localhost`)"
+      - "traefik.http.services.sophia.loadbalancer.server.port=80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - .:/code
+      - /code/src/Sophia.Api/bin
+      - /code/src/Sophia.Api/obj
+    networks:
+      - docker_default
+    command:
+      [
+        "dotnet",
+        "watch",
+        "--non-interactive",
+        "run",
+        "--project",
+        "src/Sophia.Api",
+        "--urls",
+        "http://0.0.0.0:80",
+      ]
+
+networks:
+  docker_default:
+    external: true
+    name: docker_default

@@ -1,0 +1,22 @@
+﻿version: '3'
+
+tasks:
+  build:
+    desc: Build the Docker images without cache
+    cmd: docker compose build --pull --no-cache
+
+  up:
+    desc: Start the services defined in compose.yaml
+    cmd: docker compose up -d
+
+  stop:
+    desc: Stop the services defined in compose.yaml
+    cmd: docker compose stop
+
+  down:
+    desc: Stop and remove the containers
+    cmd: docker compose down
+
+  bash:
+    desc: exec bash
+    cmd: docker compose exec sophia bash
