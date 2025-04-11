@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sophia.Api.DbContext;
 
@@ -11,9 +12,11 @@ using Sophia.Api.DbContext;
 namespace Sophia.Api.Migrations
 {
     [DbContext(typeof(SophiaContext))]
-    partial class SophiaContextModelSnapshot : ModelSnapshot
+    [Migration("20250411094432_FixColumnNameForUser")]
+    partial class FixColumnNameForUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,53 +80,6 @@ namespace Sophia.Api.Migrations
                         .HasDatabaseName("ix_users_discord_user_id");
 
                     b.ToTable("users", (string)null);
-                });
-
-            modelBuilder.Entity("Sophia.Api.Models.UserDefinitiveRegisterToken", b =>
-                {
-                    b.Property<ulong>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint unsigned")
-                        .HasColumnName("id");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<ulong>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("created_at")
-                        .HasComment("作成日時");
-
-                    b.Property<DateTime>("ExpiredAt")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("expired_at")
-                        .HasComment("有効期限");
-
-                    b.Property<bool>("IsVerified")
-                        .HasColumnType("tinyint(1)")
-                        .HasColumnName("is_verified");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("longtext")
-                        .HasColumnName("token")
-                        .HasComment("トークン");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("updated_at")
-                        .HasComment("更新日時");
-
-                    b.Property<ulong>("UserId")
-                        .HasColumnType("bigint unsigned")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_user_definitive_register_token");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_user_definitive_register_token_user_id");
-
-                    b.ToTable("user_definitive_register_token", (string)null);
                 });
 #pragma warning restore 612, 618
         }

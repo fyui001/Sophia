@@ -1,19 +1,17 @@
-﻿using System.Numerics;
-
-namespace Sophia.Api.Models;
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-[Index(nameof(UserId), IsUnique = true)]
+namespace Sophia.Api.Models;
+
+[Index(nameof(DiscordUserId), IsUnique = true)]
 public class User
 {
     [Key]
     public ulong Id { get; set; }
     
     [Comment("ユーザーID")]
-    public ulong UserId { get; set; }
+    public ulong DiscordUserId { get; set; }
     
     [Comment("名前")]
     [Column(TypeName = "varchar(255)")]
