@@ -4,7 +4,7 @@ using Sophia.Api.DbContext;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
 
 builder.Services.AddDbContextPool<SophiaContext>(options =>
 	 options.UseMySql(
