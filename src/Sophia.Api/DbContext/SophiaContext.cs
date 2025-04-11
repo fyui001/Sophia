@@ -6,6 +6,7 @@ using Models;
 public class SophiaContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<UserDefinitiveRegisterToken> UserDefinitiveRegisterToken { get; set; } = null!;
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
