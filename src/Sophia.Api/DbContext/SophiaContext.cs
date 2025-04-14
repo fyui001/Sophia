@@ -1,4 +1,6 @@
-﻿namespace Sophia.Api.DbContext;
+﻿using Sophia.Api.Seeders;
+
+namespace Sophia.Api.DbContext;
 
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -12,8 +14,9 @@ public class SophiaContext(DbContextOptions options) : DbContext(options)
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder
-            .Entity<User>();
+        
+        
+        AdminUserSeeder.Seed(modelBuilder);
+        UserSeeder.Seed(modelBuilder);
     }
 }

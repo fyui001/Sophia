@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Sophia.Api.Migrations
 {
     /// <inheritdoc />
@@ -80,6 +82,20 @@ namespace Sophia.Api.Migrations
                     table.PrimaryKey("pk_users", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "admin_user",
+                columns: new[] { "id", "created_at", "emai", "name", "role", "status", "updated_at" },
+                values: new object[] { 1ul, new DateTime(2025, 4, 14, 4, 26, 51, 523, DateTimeKind.Utc).AddTicks(3664), "takada-yuki@new-world.local", "高田憂希", "System", "Valid", new DateTime(2025, 4, 14, 4, 26, 51, 523, DateTimeKind.Utc).AddTicks(3896) });
+
+            migrationBuilder.InsertData(
+                table: "users",
+                columns: new[] { "id", "created_at", "emai", "icon_url", "name", "status", "updated_at" },
+                values: new object[,]
+                {
+                    { 1ul, new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(1915), "aya-yamane@new-world.local", "", "山根綺", "Valid", new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2078) },
+                    { 2ul, new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2217), "kuwahara-yukinew-world.local", "", "桑原由気", "Valid", new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2217) }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "ix_user_definitive_register_token_user_id",
