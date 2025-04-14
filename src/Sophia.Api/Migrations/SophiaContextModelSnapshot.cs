@@ -68,6 +68,18 @@ namespace Sophia.Api.Migrations
                         .HasName("pk_admin_user");
 
                     b.ToTable("admin_user", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1ul,
+                            CreatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 523, DateTimeKind.Utc).AddTicks(3664),
+                            Emai = "takada-yuki@new-world.local",
+                            Name = "高田憂希",
+                            Role = "System",
+                            Status = "Valid",
+                            UpdatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 523, DateTimeKind.Utc).AddTicks(3896)
+                        });
                 });
 
             modelBuilder.Entity("Sophia.Api.Models.User", b =>
@@ -120,6 +132,28 @@ namespace Sophia.Api.Migrations
                         .HasDatabaseName("ix_users_emai");
 
                     b.ToTable("users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1ul,
+                            CreatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(1915),
+                            Emai = "aya-yamane@new-world.local",
+                            IconUrl = "",
+                            Name = "山根綺",
+                            Status = "Valid",
+                            UpdatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2078)
+                        },
+                        new
+                        {
+                            Id = 2ul,
+                            CreatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2217),
+                            Emai = "kuwahara-yukinew-world.local",
+                            IconUrl = "",
+                            Name = "桑原由気",
+                            Status = "Valid",
+                            UpdatedAt = new DateTime(2025, 4, 14, 4, 26, 51, 524, DateTimeKind.Utc).AddTicks(2217)
+                        });
                 });
 
             modelBuilder.Entity("Sophia.Api.Models.UserDefinitiveRegisterToken", b =>
