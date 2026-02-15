@@ -5,13 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Sophia.Api.Responder;
 
-public class GetMeAction : Controller
+public class GetMeAction : ControllerBase
 {
-    /// <summary>
-    /// 認証済みユーザーの情報を返す。
-    /// </summary>
-    /// <response code="200">ユーザー情報</response>
-    /// <response code="401">未認証</response>
     [HttpGet("/api/me")]
     [Authorize]
     [ProducesResponseType(typeof(BaseResponder<MeResponse>), StatusCodes.Status200OK)]

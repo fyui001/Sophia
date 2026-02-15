@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 public class HomeController : Controller
 {
-    [Route("/")]
+    [HttpGet("/")]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public IActionResult Index()
     {
         return Content("高田憂希しか好きじゃない");

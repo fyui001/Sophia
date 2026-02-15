@@ -4,12 +4,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
-public class Auth0LogoutAction(IConfiguration configuration) : Controller
+public class Auth0LogoutAction(IConfiguration configuration) : ControllerBase
 {
-    /// <summary>
-    /// ログアウト。Cookieセッションを破棄し、Auth0のログアウトエンドポイントへリダイレクトする。
-    /// </summary>
-    /// <response code="302">Auth0ログアウトURLへリダイレクト</response>
     [HttpPost("/auth0/logout")]
     [ProducesResponseType(StatusCodes.Status302Found)]
     public async Task<IActionResult> Invoke()

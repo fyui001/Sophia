@@ -1,12 +1,13 @@
 namespace Sophia.Api;
 
-using System.Reflection;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Sophia.Api.Converters;
+using Sophia.Domain.Lily;
 using Sophia.Infrastructure;
+using Sophia.Infrastructure.Lily;
 
 public static class ApplicationServiceExtensions
 {
@@ -29,12 +30,7 @@ public static class ApplicationServiceExtensions
 
         builder.Services.AddApplicationServices();
 
-        builder.Services.AddSwaggerGen(options =>
-        {
-            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            options.IncludeXmlComments(xmlPath);
-        });
+        builder.Services.AddSwaggerGen();
 
         builder.Services.AddRepository();
 
@@ -66,6 +62,12 @@ public static class ApplicationServiceExtensions
             options.Scope.Add("profile");
             options.Scope.Add("email");
             options.SaveTokens = true;
+        });
+
+        // Lily API Client
+        builder.Services.AddHttpClient<ILilyClient, LilyClient>(client =>
+        {
+            client.BaseAddress = new Uri(configuration["Lily:BaseUrl"]!);
         });
 
         // CORS

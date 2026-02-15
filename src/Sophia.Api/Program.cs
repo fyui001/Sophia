@@ -7,9 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
 builder.Services.AddDbContextPool<SophiaContext>(options =>
-    options.UseMySql(
+    options.UseNpgsql(
         connectionString,
-        ServerVersion.AutoDetect(connectionString),
         b => b.MigrationsAssembly("Sophia.Db")
     ).UseSnakeCaseNamingConvention()
 );

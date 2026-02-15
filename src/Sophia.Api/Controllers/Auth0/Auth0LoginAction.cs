@@ -4,13 +4,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc;
 
-public class Auth0LoginAction(IConfiguration configuration) : Controller
+public class Auth0LoginAction(IConfiguration configuration) : ControllerBase
 {
-    /// <summary>
-    /// Auth0 Universal Loginへリダイレクトする。
-    /// </summary>
-    /// <param name="return_to">認証後のリダイレクト先パス（graceのパス）</param>
-    /// <response code="302">Auth0ログインページへリダイレクト</response>
     [HttpGet("/auth0/login")]
     [ProducesResponseType(StatusCodes.Status302Found)]
     public IActionResult Invoke([FromQuery] string? return_to)

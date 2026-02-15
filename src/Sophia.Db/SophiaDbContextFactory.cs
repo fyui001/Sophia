@@ -19,9 +19,8 @@ public class SophiaDbContextFactory : IDesignTimeDbContextFactory<SophiaContext>
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         var optionsBuilder = new DbContextOptionsBuilder<SophiaContext>();
-        optionsBuilder.UseMySql(
+        optionsBuilder.UseNpgsql(
             connectionString,
-            ServerVersion.AutoDetect(connectionString),
             b => b.MigrationsAssembly("Sophia.Db")
         ).UseSnakeCaseNamingConvention();
 

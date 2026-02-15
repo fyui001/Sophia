@@ -7,9 +7,9 @@ using Microsoft.EntityFrameworkCore;
 public class UserDefinitiveRegisterToken
 {
     [Key]
-    public ulong Id { get; set; }
+    public long Id { get; set; }
 
-    public ulong UserId { get; set; }
+    public long UserId { get; set; }
 
     [Comment("トークン")]
     public required string Token { get; set; }
