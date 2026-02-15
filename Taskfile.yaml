@@ -1,4 +1,4 @@
-﻿version: '3'
+version: '3'
 
 tasks:
   build:
@@ -26,8 +26,8 @@ tasks:
   bash:
     desc: exec bash
     cmd: docker compose exec sophia bash
-    
+
   migrate:
     desc: Run the migrations
     cmds:
-      - docker compose exec sophia bash -c "cd /code/src/Sophia.Api && dotnet ef database update"
+      - docker compose exec sophia bash -c "cd /code/src/Sophia.Db && dotnet ef database update"

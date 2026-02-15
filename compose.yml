@@ -1,4 +1,4 @@
-﻿services:
+services:
   sophia:
     build:
       context: .
@@ -13,6 +13,12 @@
       - .:/code
       - /code/src/Sophia.Api/bin
       - /code/src/Sophia.Api/obj
+      - /code/src/Sophia.Domain/bin
+      - /code/src/Sophia.Domain/obj
+      - /code/src/Sophia.Infrastructure/bin
+      - /code/src/Sophia.Infrastructure/obj
+      - /code/src/Sophia.Db/bin
+      - /code/src/Sophia.Db/obj
     networks:
       - default
       - docker_default

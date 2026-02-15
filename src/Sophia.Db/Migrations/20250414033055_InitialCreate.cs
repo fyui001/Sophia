@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Sophia.Api.Migrations
+namespace Sophia.Db.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

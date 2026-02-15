@@ -1,41 +1,45 @@
-﻿using System.ComponentModel.DataAnnotations;
+namespace Sophia.Infrastructure.Models;
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace Sophia.Api.Models;
+public enum Role
+{
+    System,
+    Operator,
+}
 
-public enum UserStatus
+public enum AdminUserStatus
 {
     Valid,
     Invalid,
 }
 
-[Index(nameof(Emai), IsUnique = true)]
-public class User
+public class AdminUser
 {
     [Key]
     public ulong Id { get; set; }
-    
+
     [Comment("メールアドレス")]
     [Column(TypeName = "varchar(255)")]
     public string? Emai { get; set; }
-    
+
     [Comment("名前")]
     [Column(TypeName = "varchar(255)")]
     public required string Name { get; set; }
-    
-    [Comment("アイコンURL")]
+
+    [Comment("ロール")]
     [Column(TypeName = "varchar(255)")]
-    public required string IconUrl { get; set; }
+    public required Role Role { get; set; }
 
     [Comment("ステータス")]
     [Column(TypeName = "varchar(255)")]
-    public UserStatus Status { get; set; } = UserStatus.Valid;
-    
+    public AdminUserStatus Status { get; set; } = AdminUserStatus.Valid;
+
     [Comment("作成日時")]
     public required DateTime CreatedAt { get; set; }
-    
+
     [Comment("更新日時")]
     public required DateTime UpdatedAt { get; set; }
-    
 }

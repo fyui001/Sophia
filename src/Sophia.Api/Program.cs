@@ -1,24 +1,22 @@
+using Sophia.Api;
+using Sophia.Infrastructure.DbContext;
 using Microsoft.EntityFrameworkCore;
-using Sophia.Api.DbContext;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 
 builder.Services.AddDbContextPool<SophiaContext>(options =>
-	 options.UseMySql(
-	 	builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
-	).UseSnakeCaseNamingConvention()
+    options.UseMySql(
+        connectionString,
+        ServerVersion.AutoDetect(connectionString),
+        b => b.MigrationsAssembly("Sophia.Db")
+    ).UseSnakeCaseNamingConvention()
 );
 
+builder.AddApplicationBuilder();
+
 var app = builder.Build();
+app.UseWebApplication().Run();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
+public partial class Program { }
