@@ -46,8 +46,8 @@ public static class ApplicationServiceExtensions
         })
         .AddCookie(options =>
         {
-            options.Cookie.SameSite = SameSiteMode.None;
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.SameSite = SameSiteMode.Lax;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
             options.Cookie.HttpOnly = true;
         })
         .AddOpenIdConnect(options =>
@@ -56,12 +56,28 @@ public static class ApplicationServiceExtensions
             options.ClientId = auth0ClientId;
             options.ClientSecret = auth0ClientSecret;
             options.ResponseType = OpenIdConnectResponseType.Code;
+            options.ResponseMode = OpenIdConnectResponseMode.Query;
             options.CallbackPath = "/auth0/callback";
             options.Scope.Clear();
             options.Scope.Add("openid");
             options.Scope.Add("profile");
             options.Scope.Add("email");
             options.SaveTokens = true;
+            options.NonceCookie.SameSite = SameSiteMode.Lax;
+            options.NonceCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+            options.CorrelationCookie.SameSite = SameSiteMode.Lax;
+            options.CorrelationCookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+
+            var graceOrigin = configuration["Grace:Origin"]!;
+            options.Events = new OpenIdConnectEvents
+            {
+                OnRedirectToIdentityProvider = context =>
+                {
+                    context.ProtocolMessage.RedirectUri =
+                        $"{graceOrigin}{options.CallbackPath}";
+                    return Task.CompletedTask;
+                }
+            };
         });
 
         // Lily API Client

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 public class Auth0LoginAction(IConfiguration configuration) : ControllerBase
 {
     [HttpGet("/auth0/login")]
-    [ProducesResponseType(StatusCodes.Status302Found)]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public IActionResult Invoke([FromQuery] string? return_to)
     {
         var graceOrigin = configuration["Grace:Origin"]!;

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 public class Auth0LogoutAction(IConfiguration configuration) : ControllerBase
 {
     [HttpPost("/auth0/logout")]
-    [ProducesResponseType(StatusCodes.Status302Found)]
+    [ApiExplorerSettings(IgnoreApi = true)]
     public async Task<IActionResult> Invoke()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
