@@ -10,7 +10,7 @@ public class UserSeeder
             new User
             {
                 Id = 1,
-                Emai = "aya-yamane@new-world.local",
+                Auth0Sub = "auth0|test-user-1",
                 Name = "山根綺",
                 IconUrl = "",
                 Status = UserStatus.Valid,
@@ -20,7 +20,7 @@ public class UserSeeder
             new User
             {
                 Id = 2,
-                Emai = "kuwahara-yukinew-world.local",
+                Auth0Sub = "auth0|test-user-2",
                 Name = "桑原由気",
                 IconUrl = "",
                 Status = UserStatus.Valid,

@@ -9,15 +9,15 @@ public enum UserStatus
     Invalid,
 }
 
-[Index(nameof(Emai), IsUnique = true)]
+[Index(nameof(Auth0Sub), IsUnique = true)]
 public class User
 {
     [Key]
     public long Id { get; set; }
 
-    [Comment("メールアドレス")]
+    [Comment("Auth0 sub")]
     [MaxLength(255)]
-    public string? Emai { get; set; }
+    public required string Auth0Sub { get; set; }
 
     [Comment("名前")]
     [MaxLength(255)]

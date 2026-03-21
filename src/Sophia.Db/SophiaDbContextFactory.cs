@@ -9,7 +9,7 @@ public class SophiaDbContextFactory : IDesignTimeDbContextFactory<SophiaContext>
 {
     public SophiaContext CreateDbContext(string[] args)
     {
-        var basePath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "../../../Sophia.Api"));
+        var basePath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../Sophia.Api"));
 
         var configuration = new ConfigurationBuilder()
             .SetBasePath(basePath)
@@ -19,8 +19,9 @@ public class SophiaDbContextFactory : IDesignTimeDbContextFactory<SophiaContext>
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         var optionsBuilder = new DbContextOptionsBuilder<SophiaContext>();
-        optionsBuilder.UseNpgsql(
-            connectionString,
+        optionsBuilder.UseMySql(
+            connectionString!,
+            new MySqlServerVersion(new Version(9, 3, 0)),
             b => b.MigrationsAssembly("Sophia.Db")
         ).UseSnakeCaseNamingConvention();
 
