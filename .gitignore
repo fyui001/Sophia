@@ -4,6 +4,7 @@
 
 .git
 .env
+compose.yml
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
