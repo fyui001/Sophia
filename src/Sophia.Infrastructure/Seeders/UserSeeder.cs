@@ -14,8 +14,8 @@ public class UserSeeder
                 Name = "山根綺",
                 IconUrl = "",
                 Status = UserStatus.Valid,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = new DateTime(2026, 3, 21, 0, 0, 0, DateTimeKind.Utc),
+                UpdatedAt = new DateTime(2026, 3, 21, 0, 0, 0, DateTimeKind.Utc),
             },
             new User
             {
@@ -24,8 +24,8 @@ public class UserSeeder
                 Name = "桑原由気",
                 IconUrl = "",
                 Status = UserStatus.Valid,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
+                CreatedAt = new DateTime(2026, 3, 21, 0, 0, 0, DateTimeKind.Utc),
+                UpdatedAt = new DateTime(2026, 3, 21, 0, 0, 0, DateTimeKind.Utc),
             }
         );
 }
