@@ -1,0 +1,36 @@
+{
+  "runtime": "Net100",
+  "documentGenerator": {
+    "fromDocument": {
+      "url": "api-docs.json",
+      "output": null
+    }
+  },
+  "codeGenerators": {
+    "openApiToCSharpClient": {
+      "className": "LilyGeneratedClient",
+      "namespace": "Sophia.Infrastructure.Lily.Generated",
+      "output": "Generated/LilyClient.g.cs",
+      "generateClientClasses": true,
+      "generateClientInterfaces": true,
+      "clientBaseInterface": null,
+      "generateDtoTypes": true,
+      "generateOptionalParameters": true,
+      "generateJsonMethods": false,
+      "generateDefaultValues": true,
+      "generateDataAnnotations": false,
+      "generateOptionalPropertiesAsNullable": true,
+      "dateType": "System.DateTime",
+      "dateTimeType": "System.DateTimeOffset",
+      "arrayType": "System.Collections.Generic.List",
+      "jsonLibrary": "SystemTextJson",
+      "operationGenerationMode": "SingleClientFromPathSegments",
+      "classStyle": "Poco",
+      "jsonSerializerSettingsTransformationMethod": null,
+      "useBaseUrl": false,
+      "exposeJsonSerializerSettings": false,
+      "disposeHttpClient": false,
+      "injectHttpClient": true
+    }
+  }
+}

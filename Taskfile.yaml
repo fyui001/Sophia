@@ -31,3 +31,8 @@ tasks:
     desc: Run the migrations
     cmds:
       - docker compose exec sophia bash -c "cd /code/src/Sophia.Db && dotnet ef database update"
+
+  codegen:
+    desc: Generate Lily API client from OpenAPI spec
+    cmds:
+      - cd src/Sophia.Infrastructure/Lily && dotnet nswag run nswag.json

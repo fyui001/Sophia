@@ -27,6 +27,10 @@ public class User
     [MaxLength(255)]
     public required string IconUrl { get; set; }
 
+    [Comment("Discord User ID")]
+    [MaxLength(255)]
+    public string? DiscordUserId { get; set; }
+
     [Comment("ステータス")]
     [MaxLength(255)]
     public UserStatus Status { get; set; } = UserStatus.Valid;

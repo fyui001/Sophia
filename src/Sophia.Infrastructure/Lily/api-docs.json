@@ -198,7 +198,8 @@
                         "description": "DiscordのUserId",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "format": "int64"
                         }
                     }
                 ],
@@ -347,9 +348,21 @@
                 "type": "object"
             },
             "drug_list_result": {
+                "type": "object",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/base_api_paginator"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/drug_detail"
+                                }
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -368,11 +381,12 @@
                     },
                     "userId": {
                         "type": "integer",
-                        "example": 930316
+                        "format": "int64",
+                        "example": 3169303169303169303
                     },
                     "amount": {
-                        "type": "integer",
-                        "example": 10
+                        "type": "number",
+                        "example": 0.4
                     },
                     "drugId": {
                         "type": "integer",
@@ -398,9 +412,21 @@
                 "type": "object"
             },
             "medication_history_list_result": {
+                "type": "object",
                 "allOf": [
                     {
                         "$ref": "#/components/schemas/base_api_paginator"
+                    },
+                    {
+                        "properties": {
+                            "data": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/medication_history_detail"
+                                }
+                            }
+                        },
+                        "type": "object"
                     }
                 ]
             },
@@ -560,10 +586,11 @@
                         "type": "integer"
                     },
                     "user_id": {
-                        "type": "integer"
+                        "type": "integer",
+                        "format": "int64"
                     },
                     "amount": {
-                        "type": "integer"
+                        "type": "number"
                     },
                     "medication_date": {
                         "type": "string"
