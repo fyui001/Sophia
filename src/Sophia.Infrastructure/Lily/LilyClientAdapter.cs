@@ -82,8 +82,9 @@ public sealed class LilyClientAdapter(ILilyGeneratedClient client) : ILilyClient
                 Amount = (double)amount,
                 Medication_date = medicationDate,
             });
-        // Lily returns the created history under "drug" key (spec naming)
-        return MapMedicationHistory(result.Data?.Drug!);
+        var history = result.Data?.Drug
+            ?? throw new InvalidOperationException("Lily returned null for created medication history");
+        return MapMedicationHistory(history);
     }
 
     public async Task<MedicationHistoryDetailDomain> UpdateMedicationHistoryAsync(int id, decimal amount, string? note)
