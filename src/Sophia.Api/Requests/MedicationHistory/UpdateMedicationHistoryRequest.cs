@@ -8,4 +8,6 @@ public record UpdateMedicationHistoryRequest
     public required decimal Amount { get; init; }
 
     public string? Note { get; init; }
+
+    public string? MedicationDate { get; init; }
 }

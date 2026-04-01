@@ -15,7 +15,7 @@ public class UpdateMedicationHistoryAction(MedicationHistoryService medicationHi
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Invoke(int id, [FromBody] Requests.MedicationHistory.UpdateMedicationHistoryRequest request)
     {
-        var result = await medicationHistoryService.UpdateAsync(id, request.Amount, request.Note);
+        var result = await medicationHistoryService.UpdateAsync(id, request.Amount, request.Note, request.MedicationDate);
         return Ok(GetMedicationHistoryDetailResponder.Create(result));
     }
 }
