@@ -13,5 +13,6 @@ public interface ILilyClient
     Task<MedicationHistoryListResult> GetMedicationHistoriesAsync(long userId, int? page = null, int? perPage = null);
     Task<MedicationHistoryDetail> GetMedicationHistoryAsync(int id);
     Task<MedicationHistoryDetail> CreateMedicationHistoryAsync(int drugId, long userId, decimal amount, string medicationDate);
-    Task<MedicationHistoryDetail> UpdateMedicationHistoryAsync(int id, decimal amount, string? note);
+    Task<MedicationHistoryDetail> UpdateMedicationHistoryAsync(int id, decimal amount, string? note, string? medicationDate = null);
+    Task DeleteMedicationHistoryAsync(int id);
 }

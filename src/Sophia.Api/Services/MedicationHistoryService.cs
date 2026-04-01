@@ -37,8 +37,13 @@ public sealed class MedicationHistoryService(
         return await lilyClient.CreateMedicationHistoryAsync(drugId, discordUserId, amount, medicationDate);
     }
 
-    public async Task<MedicationHistoryDetail> UpdateAsync(int id, decimal amount, string? note)
+    public async Task<MedicationHistoryDetail> UpdateAsync(int id, decimal amount, string? note, string? medicationDate = null)
     {
-        return await lilyClient.UpdateMedicationHistoryAsync(id, amount, note);
+        return await lilyClient.UpdateMedicationHistoryAsync(id, amount, note, medicationDate);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        await lilyClient.DeleteMedicationHistoryAsync(id);
     }
 }

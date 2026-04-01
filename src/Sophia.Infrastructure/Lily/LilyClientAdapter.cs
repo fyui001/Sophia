@@ -87,14 +87,20 @@ public sealed class LilyClientAdapter(ILilyGeneratedClient client) : ILilyClient
         return MapMedicationHistory(history);
     }
 
-    public async Task<MedicationHistoryDetailDomain> UpdateMedicationHistoryAsync(int id, decimal amount, string? note)
+    public async Task<MedicationHistoryDetailDomain> UpdateMedicationHistoryAsync(int id, decimal amount, string? note, string? medicationDate = null)
     {
         var result = await client.ApiMedicationHistoriesPutAsync(id, new Update_medication_history_request
         {
             Amount = (double)amount,
             Note = note,
+            Medication_date = medicationDate is not null ? DateTimeOffset.Parse(medicationDate) : null,
         });
         return MapMedicationHistory(result.Data!);
+    }
+
+    public async Task DeleteMedicationHistoryAsync(int id)
+    {
+        await client.ApiMedicationHistoriesDeleteAsync(id);
     }
 
     private static MedicationHistoryDetailDomain MapMedicationHistory(Medication_history_detail h) =>
